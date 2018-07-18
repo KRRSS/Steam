@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<header>
+<style>
+#editSection{
+	text-align:center;
+}
+#enterAppids{
+	margin-bottom:10px;
+	width:200px;
+}
+#buyurl{
+	margin-bottom:10px;
+	width:200px;
+}
+span{
+	width:100px;
+}
+#showRS #showJsonRs{
+	display:inline;
+}
+#itemInfo th{
+	text-align:right;
+}
+</style>
+<script>
+
+function loadDoc() {
+  var xhttp = new XMLHttpRequest();
+  var appids = document.getElementById("appids").value;
+  if(appids == ""){
+	alert("給個網址或ID吧，大大");
+  }
+  var url = "https://cors.io/?https://store.steampowered.com/api/appdetails?appids=" + appids + "&cc=tw&l=tw";
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      document.getElementById("showRS").innerText =this.responseText;
+	  decodeJson(this.responseText , appids);
+    }
+  };
+  
+  xhttp.open("GET", url, true);
+  xhttp.send();
+}
+
+function decodeJson(data , appids){
+	var json = JSON.parse(data);
+	var itemObject = (json[appids])['data'];
+
+	document.getElementById("itemType").innerText = itemObject['type'];
+	document.getElementById("itemName").innerText = itemObject['name'];
+	document.getElementById("itemId").innerText = itemObject['steam_appid'];
+	document.getElementById("age").innerText = itemObject['required_age'];
+	document.getElementById("isFree").innerText = itemObject['is_free'];
+	document.getElementById("itemPriceOri").innerText = (itemObject['price_overview'])['currency'] + " " + ((itemObject['price_overview'])['initial'] /100);
+	document.getElementById("itemPricefnl").innerText = (itemObject['price_overview'])['currency'] + " " + ((itemObject['price_overview'])['final'] / 100);
+	document.getElementById("itemPriceOff").innerText = (itemObject['price_overview'])['discount_percent'] +" % Off";
+	document.getElementById("showJsonRs").style.display = "inline";
+	
+	console.log(itemObject);
+	
+
+}
+
+function getAppids(data){
+	var appids = document.getElementById("appids");
+	if(data.id == "enterAppids"){
+	 appids.value = data.value;
+	 
+	}else{
+		var url = data.value;
+		var subUrl = url.substring((url.indexOf("app/")+4),url.lenght);
+		appids.value = subUrl.substring(0,url.indexOf("/"));
+//		console.log(url.substring((url.indexOf("app/")+4),(url.substring(url.indexOf("app/")+4,url.length).indexOf("/")+url.indexOf("app/")+4)));
+	}
+}
+</script>
+</header>
+<body>
+
+<div style="text-align:center;">
+	<div id="editSection">
+		<h2>買爆你</h2>
+		<input type="hidden" id="appids">
+		<table style="margin:0,auto;display:inline">
+			<tr><th><span>Appids：</span></th><td><input type="text" id="enterAppids" placeholder="輸入你的appsid" onchange="getAppids(this)"></td></tr>
+			<tr><th><span>購買頁面連結：</span></th><td> <input type="text" id="buyurl" placeholder="輸入你的遊戲購買頁面"onchange="getAppids(this)"></td></tr>
+		</table>
+	</div>
+	
+
+	<button type="button" onclick="javascript:loadDoc()">買爆你Steam</button>
+	<div id="showSection" style="height:800px;width:800px;text-align:center;margin:0 auto;margin-top:100px;">
+		<div id="showJsonRs" style="display:none;">
+			<h2>遊戲資訊</h2>
+			<table id="itemInfo" style="margin:0,auto;display:inline">
+				<tr>
+					<th>類型：</th>
+					<td id="itemType"></td>
+				</tr>
+				<tr>
+					<th>商品名稱：</th>
+					<td id="itemName"></td>
+				</tr>
+				<tr>
+					<th>商品ID：</th>
+					<td id="itemId"></td>
+				</tr>
+				<tr>
+					<th>商品最低遊玩年齡：</th>
+					<td id="age"></td>
+				</tr>
+				<tr>
+					<th>商品是否免費：</th>
+					<td id="isFree"></td>
+				</tr>
+				<tr>
+					<th>商品原價：</th>
+					<td id="itemPriceOri"></td>
+				</tr>
+				<tr>
+					<th>商品價格：</th>
+					<td id="itemPricefnl"></td>
+				</tr>
+				<tr>
+					<th>商品折扣數：</th>
+					<td id="itemPriceOff"></td>
+				</tr>
+					
+			</table>
+		</div>
+		<div id="showRS" style="margin-top:100px;"></div>
+	</div>
+</div>
+
+
+
+</body>
+</html>
