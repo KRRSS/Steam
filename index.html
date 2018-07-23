@@ -1,25 +1,74 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
+<head>
+<meta charset="utf-8">
+<title>Steam代購樣板</title>
+</head>
+
 <body>
-
-<div id="demo">
-<h2>The XMLHttpRequest Object</h2>
-<button type="button" onclick="javascript:loadDoc()">Change Content</button>
+<div style="width:1200px; margin:0px auto;">
+  <form id="form1" name="form1" method="post">
+  <p>代購網址  <a href="https://krrss.github.io/Steam/">https://krrss.github.io/Steam/</a></p>
+  <p>Step.1 請先填寫以下資料</p>
+  <p>
+    <label for="url">Steam個人連結</label>
+    <input type="url" name="url" id="url">
+    <br>
+  （<a href="#">找不到個人連結？</a>）</p>
+  <p>
+    <label for="textarea">要購買的遊戲連結<br>
+    </label>
+    <textarea name="textarea" id="textarea"></textarea>
+  </p>
+  <p>
+    <input type="button" name="button" id="button" value="計算價格">
+  </p>
+  
+  <!--遊戲預覽顯示區-開始-->
+  <div style="width:1200px">
+    <!--遊戲A開始-->
+<div style="width: 460px; box-shadow: 5px 5px 10px #333333; margin:15px; float:left;">
+  <div class="apptitle" style="width: 460px; height: 215px; background: url(https://steamcdn-a.akamaihd.net/steam/apps/742250/header_alt_assets_1_tchinese.jpg?t=1529922902) no-repeat top;">
+  <div style="padding:10px 20px ; font-weight:bolder ;font-size: 16px; color:#FFF; text-shadow: 2px 2px 10px #000000,2px 2px 10px #000000,2px 2px 10px #000000,2px 2px 10px #000000"><a href="https://store.steampowered.com/app/457680/OPUS_The_Day_We_Found_Earth/" target="_blank" style="text-decoration:none; color:#FFF">OPUS</a></div>
 </div>
-
-<script>
-function loadDoc() {
-  var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      document.getElementById("demo").innerHTML =
-      this.responseText;
-    }
-  };
-  xhttp.open("post", "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D%22nome%2C%20ak%22)&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys", true);
-  xhttp.send();
-}
-</script>
-
+<div style="background: #333d49;
+background: -moz-linear-gradient(left, #333d49 0%, #556371 90%);
+background: -webkit-linear-gradient(left, #333d49 0%,#556371 90%);
+background: linear-gradient(to right, #333d49 0%,#556371 90%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#333d49', endColorstr='#556371',GradientType=1 );
+padding:10px 20px ; text-align:right ; font-weight:bolder ;font-size: 30px; color:#fff; text-shadow: 2px 2px 10px #333,2px 2px 10px #000000,2px 2px 10px #000000,2px 2px 10px #000000">
+NT$ 258
+</div>
+</div>
+  <!--遊戲A結束-->
+  
+  <!--遊戲B開始-->
+<div style="width: 460px; box-shadow: 5px 5px 10px #333333; margin:15px; float:left;">
+  <div class="apptitle" style="width: 460px; height: 215px; background: url(https://steamcdn-a.akamaihd.net/steam/apps/535930/header.jpg?t=1532034209) no-repeat top;">
+  <div style="padding:10px 20px ; font-weight:bolder ;font-size: 16px; color:#FFF; text-shadow: 2px 2px 10px #000000,2px 2px 10px #000000,2px 2px 10px #000000,2px 2px 10px #000000"><a href="https://store.steampowered.com/app/535930/Two_Point_Hospital/" target="_blank" style="text-decoration:none; color:#FFF">Two Point Hospital</a></div>
+</div>
+<div style="background: #333d49;
+background: -moz-linear-gradient(left, #333d49 0%, #556371 90%);
+background: -webkit-linear-gradient(left, #333d49 0%,#556371 90%);
+background: linear-gradient(to right, #333d49 0%,#556371 90%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#333d49', endColorstr='#556371',GradientType=1 );
+padding:10px 20px ; text-align:right ;">
+	<div style="float:left; padding:0px 5px; font-weight:bolder ; font-size: 30px; color:#A4D007; background-color:#4C6B22;">-10%</div>
+	<div style="float:right; font-weight:bolder ;font-size: 30px; color:#fff; text-shadow: 2px 2px 10px #333,2px 2px 10px #000000,2px 2px 10px #000000,2px 2px 10px #000000">NT$ 823</div>
+    <div style=" float:right; padding:0px 10px; font-size:20px ; text-decoration:line-through; color:#CCC">NT$ 915</div>
+	<div style="clear:both"></div>
+</div>
+</div>
+  <!--遊戲B結束-->
+  </div>
+  <!--遊戲預覽顯示區-結束-->
+  </form>
+  <div style="clear:both"></div>
+  <p>Step.2 在下方購買頁面填寫 <span style="color: #F00">$finalprice 元</span> 之後按下一步<br>
+    Step.3 填寫付款人資訊（收件人勾選同付款人資訊即可）<br>
+    Step.4 在備註欄位貼上代購訊息 <button id="copy">點我複製</button><br>
+  </p>
+<iframe src="https://p.ecpay.com.tw/BFCE5" frameborder="0" width="1100" height="800"></iframe>
+</div>
 </body>
 </html>
