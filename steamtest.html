@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Steam代購樣板</title>
+</head>
+
+<body>
+<div style="width:1200px; margin:0px auto;">
+  <form id="form1" name="form1" method="post">
+  <p>Step.1 請先填寫以下資料</p>
+  <p>
+    <label for="url">Steam個人連結</label>
+    <input type="url" name="url" id="url">
+    <br>
+  （<a href="#">找不到個人連結？</a>）</p>
+  <p>
+    <label for="textarea">要購買的遊戲連結<br>
+    </label>
+    <textarea name="textarea" id="textarea"></textarea>
+  </p>
+  <p>
+    <input type="button" name="button" id="button" value="送出">
+  </p>
+</form>
+<div>
+  <p>Step.2 在下方購買頁面填寫 <span style="color: #F00">$finalprice 元</span> 之後按下一步<br>
+    Step.3 填寫付款人資訊（收件人勾選同付款人資訊即可）<br>
+    Step.4 在備註欄位貼上代購訊息 <button id="copy">點我複製</button><br>
+  </p>
+<iframe src="https://p.ecpay.com.tw/BFCE5" frameborder="0" width="1100" height="800"></iframe></div>
+</div>
+</body>
+</html>
